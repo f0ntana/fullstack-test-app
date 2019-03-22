@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import ImageComponent from './imageComponent';
-import InfoComponent from './infoComponent';
+import ImageComponent from './ImageComponent';
+import InfoComponent from './InfoComponent';
 
 const ItemCard = ({ item, index }) => {
     const odd = index % 2;

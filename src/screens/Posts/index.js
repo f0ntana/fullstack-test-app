@@ -4,8 +4,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from './styles';
 
-import TitleHeader from '../../components/titleHeader';
-import ItemCard from '../../components/itemCard';
+import TitleHeader from '../../components/TitleHeader';
+import ItemCard from '../../components/ItemCard';
 
 const limit = 8;
 

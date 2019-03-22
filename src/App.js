@@ -60,7 +60,7 @@ const MainNavigator = createBottomTabNavigator({
                 <Icon name="chat" color={tintColor} size={24} />
             )
         })
-    }
+    },
 });
 
 const App = createAppContainer(MainNavigator);

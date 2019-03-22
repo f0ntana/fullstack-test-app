@@ -7,7 +7,7 @@ const InfoComponent = ({ item }) => {
     let title = item.title.replace(/(<([^>]+)>)/ig,"")
         .replace(/(\r\n|\n|\r)/gm,"")
     if(title.length > 40 ) {
-        title = title.substring(0, 40)+ '...';
+        title = title.substring(0, 30)+ '...';
     }
 
     return (
