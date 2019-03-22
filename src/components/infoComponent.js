@@ -4,8 +4,11 @@ import HTML from 'react-native-render-html';
 
 const InfoComponent = ({ item }) => {
     const html = item.article.substring(0, 60) + '...';
-    const title = item.title.replace(/(<([^>]+)>)/ig,"")
-        .replace(/(\r\n|\n|\r)/gm,"");
+    let title = item.title.replace(/(<([^>]+)>)/ig,"")
+        .replace(/(\r\n|\n|\r)/gm,"")
+    if(title.length > 40 ) {
+        title = title.substring(0, 40)+ '...';
+    }
 
     return (
         <View style={styles.content}>
@@ -27,7 +30,8 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 20,
-        color: '#f4a354'
+        color: '#f4a354',
+        fontWeight: '800',
     },
     description: {
         fontSize: 12

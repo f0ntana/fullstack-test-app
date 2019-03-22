@@ -8,11 +8,12 @@ const ItemCard = ({ item, index }) => {
     const odd = index % 2;
     let components = [
         <ImageComponent
+            key={'i'+item.id}
             index="left"
             url={item.imageUrl}
             style={styles.image}
         />,
-        <InfoComponent index="right" item={item} style={styles.infos} />
+        <InfoComponent key={'c'+item.id} index="right" item={item} style={styles.infos} />
     ];
     if (!odd) {
         components = components.reverse();

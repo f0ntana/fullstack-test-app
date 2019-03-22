@@ -12,7 +12,10 @@ import Contacts from './screens/Contacts';
 
 const Feed = createStackNavigator({
     Posts: {
-        screen: Posts
+        screen: Posts,
+        navigationOptions: {
+            headerBackTitle: 'Post'
+        }
     },
     Post: {
         screen: Detail

@@ -7,11 +7,15 @@ import styles from './styles';
 import TitleHeader from '../../components/titleHeader';
 import ItemCard from '../../components/itemCard';
 
+const limit = 8;
+
 export default class Posts extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: []
+            data: [],
+            page: 1,
+            loading: false,
         };
     }
 
@@ -28,15 +32,26 @@ export default class Posts extends Component {
         }
     };
 
-    async componentDidMount() {
-        const url = `https://stormy-shelf-93141.herokuapp.com/articles`;
-        try {
-            const response = await fetch(url);
-            const data = await response.json();
-            this.setState({ data });
-        } catch (error) {
-            alert(error);
-        }
+    componentDidMount() {
+        this.loadData();
+    }
+
+    loadData = async () => {
+        if (this.state.loading) return;
+
+        const { page } = this.state;
+
+        this.setState({ loading: true });
+
+        const url = `https://stormy-shelf-93141.herokuapp.com/articles?_page=${page}&_limit=${limit}`;
+
+        const response = await fetch(url);
+        const data = await response.json();
+        this.setState({
+            data: [ ...this.state.data, ...data ],
+            page: page + 1,
+            loading: false,
+        });
     }
 
     _keyExtractor = (item, index) => item.id.toString();
@@ -51,9 +66,11 @@ export default class Posts extends Component {
                 <FlatList
                     keyExtractor={this._keyExtractor}
                     data={this.state.data}
+                    onEndReached={this.loadData}
+                    onEndReachedThreshold={0.1}
                     renderItem={({ item, index }) => (
                         <TouchableOpacity onPress={ () => this._itemDetail(item)}>
-                            <ItemCard key={item.id} item={item} index={index} />
+                            <ItemCard item={item} index={index} />
                         </TouchableOpacity>
                     )}
                 />
